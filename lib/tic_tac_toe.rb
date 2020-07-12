@@ -74,7 +74,7 @@ class TicTacToe
   # puts the move on the board
   # displays the board
   def turn
-    puts "Please choose a number from 1-9:"
+    puts "#{current_player}, please choose a number from 1-9:"
     user_input = gets.chomp
     index = input_to_index(user_input)
     if valid_move?(index)
@@ -82,7 +82,8 @@ class TicTacToe
       move(index, player_token)
       display_board
     else
-      puts "Sorry, looks like that square is already taken."
+      puts "Sorry, that move isn't allowed!"
+      puts "\n"
       turn
     end
   end
@@ -147,18 +148,27 @@ class TicTacToe
 
   # returns an initial welcome message
   def welcome
+    puts "\n"
     puts "Welcome to our old school CLI game of tic-tac-toe!"
-    puts "The aim of the game is to get 3 in a row"
+    puts "\n"
+    puts "The aim of the game is to get 3 of your icon in a row"
+    puts "\n"
     puts "Player 1 will be X (crosses), and will always go first"
+    puts "\n"
     puts "Player 2 will be O (naughts), and will always go second"
+    puts "\n"
     puts "The board looks like this:"
+    puts "\n"
     puts " 1 | 2 | 3 "
     puts "-----------"
     puts " 4 | 5 | 6 "
     puts "-----------"
     puts " 7 | 8 | 9 "
+    puts "\n"
     puts "Simply type the number of the square where you want to make your move"
+    puts "\n"
     puts "Enjoy!"
+    puts "\n"
   end
 
   # initiaites the game
