@@ -56,8 +56,8 @@ class TicTacToe
   end
 
   # returns the player who must make their move
+  # if turn count divisible by 2 it means O just went, so X's turn
   def current_player
-    # if the turn count is an even number, that means O just went, so the next/current player is X
     num_turns = turn_count
     player = if num_turns.even?
                'X'
@@ -171,6 +171,7 @@ class TicTacToe
 
   # initiaites the game
   def play
+    welcome
     turn until over? == true
 
     if won?
@@ -182,5 +183,4 @@ class TicTacToe
 end
 
 game = TicTacToe.new
-game.welcome
 game.play
