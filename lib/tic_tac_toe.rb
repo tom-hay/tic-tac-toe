@@ -10,19 +10,19 @@ class TicTacToe
     [2, 5, 8],
     [0, 4, 8],
     [6, 4, 2]
-  ]
+  ].freeze
 
   # create an array of 9 empty slots for the board
   def initialize
-    @board = Array.new(9, " ")
+    @board = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
   end
 
   # displays the current board to the user
   def display_board
     puts " #{@board[0]} | #{@board[1]} | #{@board[2]} "
-    puts "-----------"
+    puts '-----------'
     puts " #{@board[3]} | #{@board[4]} | #{@board[5]} "
-    puts "-----------"
+    puts '-----------'
     puts " #{@board[6]} | #{@board[7]} | #{@board[8]} "
   end
 
@@ -32,41 +32,39 @@ class TicTacToe
   end
 
   # puts the player's move on the board
-  def move(index, current_player = "X")
+  def move(index, current_player = 'X')
     @board[index] = current_player
   end
 
   # checks if the square has already been used
   def position_taken?(index)
-    !(@board[index].nil? || @board[index] == " ")
+    !(@board[index].nil? || @board[index] == ' ')
   end
 
   # checks that the move was valid
   def valid_move?(index)
-    index.between?(0,8) && !position_taken?(index)
+    index.between?(0, 8) && !position_taken?(index)
   end
 
   # counts each turn each player makes
   def turn_count
     turn = 0
     @board.each do |index|
-      if index == "X" || index == "O"
-        turn += 1
-      end
+      turn += 1 if index == 'X' || index == 'O'
     end
-    return turn
+    turn
   end
 
   # returns the player who must make their move
   def current_player
-    #if the turn count is an even number, that means O just went, so the next/current player is X
+    # if the turn count is an even number, that means O just went, so the next/current player is X
     num_turns = turn_count
-    if num_turns % 2 == 0
-      player = "X"
-    else
-      player = "O"
-    end
-    return player
+    player = if num_turns.even?
+               'X'
+             else
+               'O'
+             end
+    player
   end
 
   # takes the user input
@@ -90,7 +88,7 @@ class TicTacToe
 
   # checks the current board against all possible win combinations
   def won?
-    WIN_COMBINATIONS.each {|win_combo|
+    WIN_COMBINATIONS.each do |win_combo|
       index_0 = win_combo[0]
       index_1 = win_combo[1]
       index_2 = win_combo[2]
@@ -99,35 +97,35 @@ class TicTacToe
       position_2 = @board[index_1]
       position_3 = @board[index_2]
 
-      if position_1 == "X" && position_2 == "X" && position_3 == "X"
+      if position_1 == 'X' && position_2 == 'X' && position_3 == 'X'
         return win_combo
-      elsif position_1 == "O" && position_2 == "O" && position_3 == "O"
+      elsif position_1 == 'O' && position_2 == 'O' && position_3 == 'O'
         return win_combo
       end
-    }
-    return false
+    end
+    false
   end
 
   # returns whether the board is full or not
   def full?
-    @board.all? {|index| index == "X" || index == "O"}
+    @board.all? { |index| index == 'X' || index == 'O' }
   end
 
   # returns whether or not there has been a draw
   def draw?
     if !won? && full?
-      return true
+      true
     else
-      return false
+      false
     end
   end
 
   # returns whether or not the game is over
   def over?
     if won? || draw?
-      return true
+      true
     else
-      return false
+      false
     end
   end
 
@@ -136,12 +134,12 @@ class TicTacToe
     index = []
     index = won?
     if index == false
-      return nil
+      nil
     else
-      if @board[index[0]] == "X"
-        return "X"
+      if @board[index[0]] == 'X'
+        'X'
       else
-        return "O"
+        'O'
       end
     end
   end
@@ -149,33 +147,31 @@ class TicTacToe
   # returns an initial welcome message
   def welcome
     puts "\n"
-    puts "Welcome to our old school CLI game of tic-tac-toe!"
+    puts 'Welcome to our old school CLI game of tic-tac-toe!'
     puts "\n"
-    puts "The aim of the game is to get 3 of your icon in a row"
+    puts 'The aim of the game is to get 3 of your icon in a row'
     puts "\n"
-    puts "Player 1 will be X (crosses), and will always go first"
+    puts 'Player 1 will be X (crosses), and will always go first'
     puts "\n"
-    puts "Player 2 will be O (naughts), and will always go second"
+    puts 'Player 2 will be O (naughts), and will always go second'
     puts "\n"
-    puts "The board looks like this:"
+    puts 'The board looks like this:'
     puts "\n"
-    puts " 1 | 2 | 3 "
-    puts "-----------"
-    puts " 4 | 5 | 6 "
-    puts "-----------"
-    puts " 7 | 8 | 9 "
+    puts ' 1 | 2 | 3 '
+    puts '-----------'
+    puts ' 4 | 5 | 6 '
+    puts '-----------'
+    puts ' 7 | 8 | 9 '
     puts "\n"
-    puts "Simply type the number of the square where you want to make your move"
+    puts 'Simply type the number of the square where you want to make your move'
     puts "\n"
-    puts "Enjoy!"
+    puts 'Enjoy!'
     puts "\n"
   end
 
   # initiaites the game
   def play
-    until over? == true
-      turn
-    end
+    turn until over? == true
 
     if won?
       puts "Congratulations #{winner}! You are the tic-tac-toe champion."
@@ -183,9 +179,7 @@ class TicTacToe
       puts "Oh no! It's a draw!"
     end
   end
-
 end
-
 
 game = TicTacToe.new
 game.welcome
