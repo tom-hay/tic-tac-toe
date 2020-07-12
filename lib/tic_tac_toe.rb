@@ -74,7 +74,7 @@ class TicTacToe
   # puts the move on the board
   # displays the board
   def turn
-    puts "#{current_player}, please choose a number from 1-9:"
+    puts "OK #{current_player}, it's your turn! Please choose a number from 1-9:"
     user_input = gets.chomp
     index = input_to_index(user_input)
     if valid_move?(index)
