@@ -12,9 +12,11 @@ class TicTacToe
     [6, 4, 2]
   ].freeze
 
+  attr_reader :board
+
   # create an array of 9 empty slots for the board
-  def initialize
-    @board = [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
+  def initialize(board = nil)
+    @board = board || [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ']
   end
 
   # displays the current board to the user
@@ -176,24 +178,5 @@ class TicTacToe
     elsif draw?
       puts "Oh no! It's a draw!"
     end
-  end
-end
-
-game = TicTacToe.new
-game.welcome
-
-continue = 'c'
-while continue
-  puts('Press c to continue, or q to quit the game')
-  continue = gets.chomp
-  case continue
-  when 'c'
-    game = TicTacToe.new
-    game.welcome
-    game.play
-  when 'q'
-    exit
-  else
-    puts("Please enter a valid choice.\n ")
   end
 end

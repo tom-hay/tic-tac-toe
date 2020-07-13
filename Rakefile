@@ -10,7 +10,7 @@ RuboCop::RakeTask.new(:lint) do |task|
 end
 
 task :run do
-  ruby 'lib/tic_tac_toe.rb'
+  ruby 'main.rb'
 end
 
 task :test do
