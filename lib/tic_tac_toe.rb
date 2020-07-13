@@ -131,16 +131,13 @@ class TicTacToe
 
   # returns the winner of the game
   def winner
-    # index = []
-    index = won?
-    if index == false
-      nil
+    case won?
+    when 'X'
+      return 'X'
+    when 'O'
+      return 'O'
     else
-      if index == 'X'
-        'X'
-      else
-        'O'
-      end
+      raise "There is no winner yet. Something went wrong."
     end
   end
 
