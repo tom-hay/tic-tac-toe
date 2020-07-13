@@ -38,7 +38,7 @@ class TicTacToe
 
   # checks if the square has already been used
   def position_taken?(index)
-    !(@board[index].nil? || @board[index] == ' ')
+    @board[index] != ' '
   end
 
   # checks that the move was valid
@@ -58,8 +58,7 @@ class TicTacToe
   # returns the player who must make their move
   # if turn count divisible by 2 it means O just went, so X's turn
   def current_player
-    num_turns = turn_count
-    player = if num_turns.even?
+    player = if turn_count.even?
                'X'
              else
                'O'
@@ -76,8 +75,7 @@ class TicTacToe
     user_input = gets.chomp
     index = input_to_index(user_input)
     if valid_move?(index)
-      player_token = current_player
-      move(index, player_token)
+      move(index, current_player)
       display_board
     else
       puts "Sorry, that move isn't allowed!"
@@ -98,9 +96,9 @@ class TicTacToe
       position_3 = @board[index_2]
 
       if position_1 == 'X' && position_2 == 'X' && position_3 == 'X'
-        return win_combo
+        return 'X'
       elsif position_1 == 'O' && position_2 == 'O' && position_3 == 'O'
-        return win_combo
+        return 'O'
       end
     end
     false
@@ -131,12 +129,12 @@ class TicTacToe
 
   # returns the winner of the game
   def winner
-    index = []
+    # index = []
     index = won?
     if index == false
       nil
     else
-      if @board[index[0]] == 'X'
+      if index == 'X'
         'X'
       else
         'O'
@@ -171,7 +169,6 @@ class TicTacToe
 
   # initiaites the game
   def play
-    welcome
     turn until over? == true
 
     if won?
@@ -183,4 +180,20 @@ class TicTacToe
 end
 
 game = TicTacToe.new
-game.play
+game.welcome
+
+cont = 'c'
+while cont
+  puts('Press c to Continue and q to Quit the Game')
+  cont = gets.chomp
+  case cont
+  when 'c'
+    game = TicTacToe.new
+    game.welcome
+    game.play
+  when 'q'
+    exit
+  else
+    puts("Please Enter valid choice.\n ")
+    end
+  end
