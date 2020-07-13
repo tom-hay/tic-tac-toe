@@ -182,11 +182,11 @@ end
 game = TicTacToe.new
 game.welcome
 
-cont = 'c'
-while cont
-  puts('Press c to Continue and q to Quit the Game')
-  cont = gets.chomp
-  case cont
+continue = 'c'
+while continue
+  puts('Press c to continue, or q to quit the game')
+  continue = gets.chomp
+  case continue
   when 'c'
     game = TicTacToe.new
     game.welcome
@@ -194,6 +194,6 @@ while cont
   when 'q'
     exit
   else
-    puts("Please Enter valid choice.\n ")
-    end
+    puts("Please enter a valid choice.\n ")
   end
+end
