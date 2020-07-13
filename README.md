@@ -1,6 +1,7 @@
 # ruby-template
 
-Minimal Ruby template.
+This repo was created from a Minimal Ruby template from github user @deciduously.
+
 
 ## Dependencies
 
@@ -8,4 +9,17 @@ Minimal Ruby template.
 
 ## Usage
 
-Install deps: `gem install bundler && bundle install`.  Run `bundle exec rake` to run the tests, or `bundle exec rake run` to run the program.
+To install dependencies, run `gem install bundler && bundle install`.
+Run `bundle exec rake` to run the tests.
+Run `bundle exec rake run` to run the program.
+
+This program has been created with the following assumptions from the MYOB challenge
+
+  - Player 1 is X and always goes first
+  - Player 2 is O and always goes second
+  - A player wins when all fields in a column are taken by the player
+  - A player wins when all fields in a row are taken by the player
+  - A player wins when all fields in a diagonal are taken by the player
+  - The game is drawn when all fields are taken on the board and there is no winner
+
+
